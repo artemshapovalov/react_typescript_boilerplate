@@ -1,4 +1,4 @@
-import unsplash from './services/unsplash';
+import unsplash from './services/unsplash.js';
 
 function Unsplash(term) {
   try {

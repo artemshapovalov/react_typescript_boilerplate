@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import axios from "axios";
 
 export default async term => {
