@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const sourcePath = path.resolve(__dirname, '..', 'src', 'index.js');
+const sourcePath = path.resolve(__dirname, '../src/js/index.tsx');
 
 module.exports = {
   mode: 'development',
@@ -13,11 +13,14 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   devServer: {
     contentBase: './dist',
     hot: true,
     overlay: true,
+  },
+  resolve: {
+    extensions: ['.js', '.json', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -25,6 +28,18 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
+      },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      {
+        test: /\.(ts|tsx)$/,
+        loader: 'awesome-typescript-loader',
+      },
+
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'source-map-loader',
       },
       {
         test: /\.scss$/,
@@ -54,7 +69,7 @@ module.exports = {
       filename: 'style.[chunkhash].css', disable: false, allChunks: true,
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'src/index_template.html',
     }),
   ],
 };

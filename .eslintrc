@@ -1,16 +1,22 @@
 {
   "plugins": [
     "babel",
-    "jest"
+    "jest",
+    "@typescript-eslint"
   ],
   "env": {
     "node": true,
     "jest": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "extends": [
     "airbnb-base",
-    "plugin:jest/recommended"
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "no-console": 0
