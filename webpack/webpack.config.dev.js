@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const sourcePath = path.resolve(__dirname, '../src/js/index.tsx');
+const sourcePath = path.resolve(__dirname, '../src/index.tsx');
 
 module.exports = {
   mode: 'development',
